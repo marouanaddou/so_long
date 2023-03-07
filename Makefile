@@ -1,7 +1,8 @@
 NAME = so_long
 CC = cc
 RM = rm -rf
-SRC = so_long.c libft.c checkmap.c checkvalidpath.c 
+SRC = so_long.c libft.c checkmap.c checkvalidpath.c so_long_utils.c \
+		move_player.c so_long_utils1.c so_long_free.c
 
 OBJ = $(SRC:.c=.o)
 

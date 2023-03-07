@@ -6,56 +6,56 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:11:16 by maddou            #+#    #+#             */
-/*   Updated: 2023/02/27 17:00:58 by maddou           ###   ########.fr       */
+/*   Updated: 2023/03/06 10:46:43 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-void free_split(char **matrix)
+void	free_split(char **matrix)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while(matrix[i] != NULL)
-    {
-        free(matrix[i]);
-        i++;
-    }
-    free(matrix);
+	i = 0;
+	j = 0;
+	while (matrix[i] != NULL)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
-static int      ft_nmb_string(const char *s, char c)
+static int	ft_nmb_string(const char *s, char c)
 {
-        int     i;
-        int     j;
+	int	i;
+	int	j;
 
-        i = 0;
-        j = 1;
-        while (s[i] == c)
-                i++;
-        while (s[i] != '\0')
-        {
-                while (s[i] == c && s[i + 1] != '\0' && s[i + 1] != c)
-                {
-                        j++;
-                        i++;
-                }
-                i++;
-        }
-        return (j);
+	i = 0;
+	j = 1;
+	while (s[i] == c)
+		i++;
+	while (s[i] != '\0')
+	{
+		while (s[i] == c && s[i + 1] != '\0' && s[i + 1] != c)
+		{
+			j++;
+			i++;
+		}
+		i++;
+	}
+	return (j);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
