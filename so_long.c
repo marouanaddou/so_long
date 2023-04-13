@@ -6,11 +6,10 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:07:59 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/07 15:59:15 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 05:15:17 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx/mlx.h"
 #include "so_long.h"
 
 void	chek_file(int maps)
@@ -38,7 +37,6 @@ void	print(int i)
 int	check_name(char *str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -81,8 +79,6 @@ int	main(int argc, char *argv[])
 	t_long	s;
 	t_mlx	mlx;
 
-	mlx.width = 67;
-	mlx.height = 67;
 	s.cont_move = 0;
 	if (argc > 1)
 	{
@@ -91,10 +87,17 @@ int	main(int argc, char *argv[])
 		chek_file(s.maps);
 		check_map(&s);
 		s.mx_init = mlx_init();
+		if (s.mx_init == NULL)
+			return (0);
 		s.mx_window = mlx_new_window(s.mx_init, s.v * 63, s.u * 63, "so_long");
+		if (s.mx_window == NULL)
+		{
+			mlx_destroy_window(s.mx_init, s.mx_window);
+			return (0);
+		}
 		put_image(&s, &mlx);
 		mlx_key_hook(s.mx_window, key_hok, &s);
-		mlx_hook(s.mx_window, 17, 0, check_exit, &s);
+		mlx_hook(s.mx_window, 17, 0, game_over, &s);
 		mlx_loop(s.mx_init);
 	}
 }

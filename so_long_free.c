@@ -6,10 +6,11 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:08:03 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/07 16:11:38 by maddou           ###   ########.fr       */
+/*   Updated: 2023/03/31 17:54:52 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//#include "mlx/mlx.h"
 #include "so_long.h"
 
 void	free_image(t_long *l)

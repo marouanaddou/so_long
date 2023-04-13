@@ -6,13 +6,13 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:22:22 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/07 16:05:25 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 00:39:39 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_exit(t_long *l)
+int	game_over(t_long *l)
 {
 	free_image(l);
 	exit(0);
@@ -60,38 +60,37 @@ void	aplique_element(t_long *l)
 {
 	if (l->matrix[l->u][l->v] == 'P')
 	{
-		if (l->matrix[l->u][l->v] == 'P' && (l->matrix[l->u - 1][l->v] == 'E'
-				|| l->matrix[l->u][l->v + 1] == 'E' || l->matrix[l->u
-				+ 1][l->v] == 'E' || l->matrix[l->u][l->v - 1] == 'E')
-			&& l->co_e < 1)
-			l->co_e++;
-		if (l->matrix[l->u - 1][l->v] != '1' && l->matrix[l->u
-			- 1][l->v] != 'E')
+		if (l->matrix[l->u - 1][l->v] != '1')
 			l->matrix[l->u - 1][l->v] = 'P';
-		if (l->matrix[l->u][l->v + 1] != '1' && l->matrix[l->u][l->v
-			+ 1] != 'E')
+		if (l->matrix[l->u][l->v + 1] != '1')
 			l->matrix[l->u][l->v + 1] = 'P';
-		if (l->matrix[l->u + 1][l->v] != '1' && l->matrix[l->u
-			+ 1][l->v] != 'E')
+		if (l->matrix[l->u + 1][l->v] != '1')
 			l->matrix[l->u + 1][l->v] = 'P';
-		if (l->matrix[l->u][l->v - 1] != '1' && l->matrix[l->u][l->v
-			- 1] != 'E')
+		if (l->matrix[l->u][l->v - 1] != '1')
 			l->matrix[l->u][l->v - 1] = 'P';
 	}
 }
 
 void	check_exit_player(int keycode, t_long *l)
 {
-	if (keycode == 1 && l->matrix[l->z + 1][l->w] != '1')
+	if (keycode == 1 && l->matrix[l->x][l->y] != '1')
 	{
-		l->cont_move++;
-		if (l->matrix[l->z + 1][l->w] == 'E')
-			check_exit(l);
+		if (l->matrix[l->x][l->y] == 'E')
+		{
+			l->cont_move++;
+			put_nbr(l->cont_move);
+			write(1, "\n", 1);
+			game_over(l);
+		}
 	}
-	else if (keycode == 0 && l->matrix[l->z][l->w - 1] != '1')
+	else if (keycode == 0 && l->matrix[l->x][l->y] != '1')
 	{
-		l->cont_move++;
-		if (l->matrix[l->z][l->w - 1] == 'E')
-			check_exit(l);
+		if (l->matrix[l->x][l->y] == 'E')
+		{
+			l->cont_move++;
+			put_nbr(l->cont_move);
+			write(1, "\n", 1);
+			game_over(l);
+		}
 	}
 }

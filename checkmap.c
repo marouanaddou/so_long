@@ -6,7 +6,7 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:28 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/07 16:23:43 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/12 15:58:03 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	check_resolution(char *str)
 	i = 0;
 	j = 0;
 	x = 0;
-	// if (str[i] == '\0')
-	// {
-	// 	write(1, "Enter maps please ❌\n", 22);
-	// 	exit(1);	;
-	// }
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	while (str[j] != '\0')
@@ -75,12 +70,12 @@ void	check_length(char **matrix)
 	int	x;
 
 	i = 0;
-	x = 0;
 	j = 1;
 	while (matrix[0][i] != '\0')
 		i++;
 	while (matrix[j] != NULL)
 	{
+		x = 0;
 		while (matrix[j][x] != '\0')
 			x++;
 		if (x != i)
@@ -89,7 +84,6 @@ void	check_length(char **matrix)
 			free_split(matrix);
 			exit(1);
 		}
-		x = 0;
 		j++;
 	}
 	write(1, "valid length ✅\n", 17);
@@ -111,7 +105,7 @@ void	check_element(char *str, t_long *l)
 				write(1, "not valid elment ❌\n", 22);
 				exit(1);
 			}
-			else if (str[i] != '\n')
+			else if (str[i] != '\n' || (str[i] == '\n' && str[i + 1] == '\0'))
 			{
 				write(1, "not valid elment ❌\n", 22);
 				exit(1);
@@ -134,7 +128,7 @@ void	check_wall(char **matrix)
 		j++;
 	j--;
 	i = checkfila_wal(matrix, j);
-	while (j > 0)
+	while (--j > 0)
 	{
 		if (matrix[j][0] != '1' || matrix[j][i - 1] != '1')
 		{
@@ -142,7 +136,6 @@ void	check_wall(char **matrix)
 			free_split(matrix);
 			exit(1);
 		}
-		j--;
 	}
 	write(1, "valid wall ✅\n", 15);
 }

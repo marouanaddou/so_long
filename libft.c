@@ -6,15 +6,16 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:11:16 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/06 10:46:43 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 04:30:38 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stddef.h>
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')

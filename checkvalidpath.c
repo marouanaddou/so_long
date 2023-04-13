@@ -6,7 +6,7 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:40:33 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/07 12:03:13 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 05:05:37 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	validpath(t_long *l)
 		l->j = 0;
 		while (l->matrix[l->i][l->j] != '\0')
 		{
-			if (l->matrix[l->i][l->j] == 'C' || l->co_e != 1)
+			if (l->matrix[l->i][l->j] == 'C' || l->matrix[l->i][l->j] == 'E')
 			{
 				write(1, "not valid path ❌\n", 19);
 				free_split(l->matrix);
@@ -97,7 +97,7 @@ void	validpath(t_long *l)
 void	check_valid_map(char **matrix, t_long *l)
 {
 	l->i = 1;
-	l->j = 0;
+	l->p = 0;
 	l->r = 1;
 	l->a = 1;
 	l->co_c = 0;
@@ -117,7 +117,7 @@ void	check_valid_map(char **matrix, t_long *l)
 	}
 	while (l->buffer[l->p] != '\0')
 		l->p++;
-	l->mat[0][0] = l->i;
-	l->mat[0][1] = l->j;
+	l->x = l->i;
+	l->y = l->j;
 	validpath(l);
 }

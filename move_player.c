@@ -6,7 +6,7 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 19:15:17 by maddou            #+#    #+#             */
-/*   Updated: 2023/03/07 12:07:01 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 05:06:34 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ void	move_top(t_long *l, t_mlx *mlx)
 	put_nbr(l->cont_move);
 	write(1, "\n", 1);
 	mlx_clear_window(l->mx_init, l->mx_window);
-	l->matrix[l->z][l->w] = '0';
-	l->matrix[l->z - 1][l->w] = 'P';
+	l->x -= 1;
 	l->i = 0;
 	l->j = 0;
+	if (l->matrix[l->x][l->y] == 'C')
+		l->matrix[l->x][l->y] = '0';
 	put_image(l, mlx);
+	mlx_put_image_to_window(l->mx_init, l->mx_window, l->xpm_image[1], l->y
+		* 63, l->x * 63);
 }
 
 void	move_right(t_long *l, t_mlx *mlx)
@@ -49,11 +52,14 @@ void	move_right(t_long *l, t_mlx *mlx)
 	put_nbr(l->cont_move);
 	write(1, "\n", 1);
 	mlx_clear_window(l->mx_init, l->mx_window);
-	l->matrix[l->z][l->w] = '0';
-	l->matrix[l->z][l->w + 1] = 'P';
+	l->y += 1;
 	l->i = 0;
 	l->j = 0;
+	if (l->matrix[l->x][l->y] == 'C')
+		l->matrix[l->x][l->y] = '0';
 	put_image(l, mlx);
+	mlx_put_image_to_window(l->mx_init, l->mx_window, l->xpm_image[1], l->y
+		* 63, l->x * 63);
 }
 
 void	move_bottom(t_long *l, t_mlx *mlx)
@@ -62,11 +68,14 @@ void	move_bottom(t_long *l, t_mlx *mlx)
 	put_nbr(l->cont_move);
 	write(1, "\n", 1);
 	mlx_clear_window(l->mx_init, l->mx_window);
-	l->matrix[l->z][l->w] = '0';
-	l->matrix[l->z + 1][l->w] = 'P';
+	l->x += 1;
 	l->i = 0;
 	l->j = 0;
+	if (l->matrix[l->x][l->y] == 'C')
+		l->matrix[l->x][l->y] = '0';
 	put_image(l, mlx);
+	mlx_put_image_to_window(l->mx_init, l->mx_window, l->xpm_image[1], l->y
+		* 63, l->x * 63);
 }
 
 void	move_left(t_long *l, t_mlx *mlx)
@@ -75,9 +84,12 @@ void	move_left(t_long *l, t_mlx *mlx)
 	put_nbr(l->cont_move);
 	write(1, "\n", 1);
 	mlx_clear_window(l->mx_init, l->mx_window);
-	l->matrix[l->z][l->w] = '0';
-	l->matrix[l->z][l->w - 1] = 'P';
+	l->y -= 1;
 	l->i = 0;
 	l->j = 0;
+	if (l->matrix[l->x][l->y] == 'C')
+		l->matrix[l->x][l->y] = '0';
 	put_image(l, mlx);
+	mlx_put_image_to_window(l->mx_init, l->mx_window, l->xpm_image[1], l->y
+		* 63, l->x * 63);
 }
