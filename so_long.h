@@ -6,7 +6,7 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:04:03 by maddou            #+#    #+#             */
-/*   Updated: 2023/04/13 05:26:30 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 23:16:10 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx.h"
 # include <fcntl.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -34,9 +35,8 @@ typedef struct s_long
 	int		x;
 	int		y;
 	int		j;
-	int		r;
 	int		maps;
-	void	*xpm_image[5];
+	void	*xpm_image[4];
 	char	**matrix;
 	char	buffer[1000000];
 	int		u;
@@ -44,25 +44,12 @@ typedef struct s_long
 	int		a;
 	void	*mx_init;
 	void	*mx_window;
-	int		z;
-	int		w;
 	int		cont_move;
 	int		cont_coins;
 	int		c;
 	int		e;
 	int		p;
-	int		co_c;
-	int		co_e;
 }			t_long;
-
-typedef struct s_cont
-{
-	int		c;
-	int		e;
-	int		p;
-	int		co_c;
-	int		co_e;
-}			t_cont;
 
 size_t		ft_strlen(char *str);
 
@@ -71,14 +58,11 @@ void		check_length(char **matrix);
 void		check_wall(char **matrix);
 int			checkfila_wal(char **matrix, int j);
 void		check_valid_map(char **matrix, t_long *l);
-void		valid(t_cont *cont, t_long *l);
 void		check_resolution(char *str);
 
 void		free_split(char **matrix);
 
 char		**ft_split(char *str, char c);
-
-void		validpath(t_long *l);
 
 int			key_hok(int keycode, t_long *l);
 void		put_image(t_long *l, t_mlx *mlx);
@@ -94,8 +78,9 @@ int			check_coins(t_long *l);
 
 void		mlx_function(t_long *l, t_mlx *mlx);
 
-void		aplique_element(t_long *l);
 void		check_exit_player(int keycode, t_long *l);
 
 void		free_image(t_long *l);
+
+void		calcul_element(t_long *l);
 #endif

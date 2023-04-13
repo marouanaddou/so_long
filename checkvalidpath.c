@@ -6,7 +6,7 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:40:33 by maddou            #+#    #+#             */
-/*   Updated: 2023/04/13 05:05:37 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:11:11 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,17 @@ int	checkfila_wal(char **matrix, int j)
 	return (i);
 }
 
-void	aplique(t_long *l)
+void	aplique(t_long *l, int x, int y)
 {
-	l->u = 0;
-	while (l->matrix[l->u] != NULL)
-	{
-		l->v = 0;
-		while (l->matrix[l->u][l->v] != '\0')
-		{
-			aplique_element(l);
-			l->v++;
-		}
-		l->u++;
-	}
+	l->matrix[x][y] = '1';
+	if (l->matrix[x - 1][y] != '1')
+		aplique(l, x - 1, y);
+	if (l->matrix[x][y + 1] != '1')
+		aplique(l, x, y + 1);
+	if (l->matrix[x + 1][y] != '1')
+		aplique(l, x + 1, y);
+	if (l->matrix[x][y - 1] != '1')
+		aplique(l, x, y - 1);
 }
 
 void	c_map(t_long *l)
@@ -68,13 +66,9 @@ void	c_map(t_long *l)
 
 void	validpath(t_long *l)
 {
-	l->a = 0;
 	l->i = 0;
-	while (l->a <= l->p)
-	{
-		aplique(l);
-		l->a++;
-	}
+	aplique(l, l->x, l->y);
+	calcul_element(l);
 	while (l->matrix[l->i] != NULL)
 	{
 		l->j = 0;
@@ -98,10 +92,6 @@ void	check_valid_map(char **matrix, t_long *l)
 {
 	l->i = 1;
 	l->p = 0;
-	l->r = 1;
-	l->a = 1;
-	l->co_c = 0;
-	l->co_e = 0;
 	while (matrix[l->i] != NULL)
 	{
 		l->j = 0;

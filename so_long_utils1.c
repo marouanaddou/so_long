@@ -6,7 +6,7 @@
 /*   By: maddou <maddou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:22:22 by maddou            #+#    #+#             */
-/*   Updated: 2023/04/13 00:39:39 by maddou           ###   ########.fr       */
+/*   Updated: 2023/04/13 18:30:48 by maddou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,15 @@ void	mlx_function(t_long *l, t_mlx *mlx)
 	}
 }
 
-void	aplique_element(t_long *l)
+void	calcul_element(t_long *l)
 {
-	if (l->matrix[l->u][l->v] == 'P')
+	l->u = 0;
+	while (l->matrix[l->u] != NULL)
 	{
-		if (l->matrix[l->u - 1][l->v] != '1')
-			l->matrix[l->u - 1][l->v] = 'P';
-		if (l->matrix[l->u][l->v + 1] != '1')
-			l->matrix[l->u][l->v + 1] = 'P';
-		if (l->matrix[l->u + 1][l->v] != '1')
-			l->matrix[l->u + 1][l->v] = 'P';
-		if (l->matrix[l->u][l->v - 1] != '1')
-			l->matrix[l->u][l->v - 1] = 'P';
+		l->v = 0;
+		while (l->matrix[l->u][l->v] != '\0')
+			l->v++;
+		l->u++;
 	}
 }
 
